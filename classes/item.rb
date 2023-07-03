@@ -1,3 +1,5 @@
+require 'date'
+
 class Item
   def initialize(published_date, archived)
     @id = Random.rand(1..1000)
@@ -20,4 +22,15 @@ class Item
   def add_label(label)
     @label = label
   end
+
+  def move_to_archive
+    @archived = can_be_archived?
+  end
+
+  private
+
+  def can_be_archived?
+    Date.today.year - Date.parse(@published_date).year > 10
+  end
+
 end
