@@ -38,6 +38,7 @@ end
 
 def main
   loop do
+    show_menu
     input = gets.chomp
     process_input(input) if (1..6).to_a.include?(input.to_i)
     invalid_option unless (1..6).to_a.include?(input.to_i)
