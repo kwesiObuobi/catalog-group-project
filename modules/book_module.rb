@@ -9,6 +9,7 @@ module BookModule
     cover_state = gets.chomp
     curr_book = Book.new(published_date, publisher, cover_state)
     @books.push(curr_book)
+    add_label
   end
 
   def add_label

@@ -5,12 +5,11 @@ def show_menu
   puts '1. List all books'
   puts '2. List all labels'
   puts '3. Add a book'
-  puts '4. Add a label'
-  puts '5. List all genres'
-  puts '6. List all labels'
-  puts '7. List all authors'
-  puts '8. Add a book'
-  puts '9. Add a music album'
+  puts '4. List all genres'
+  puts '5. List all Music Album'
+  puts '6. List all authors'
+  puts '7. Add a book'
+  puts '8. Add a music album'
   puts '9. Add a movie'
   puts '10. Add a game'
   puts '0. to quit the app'
@@ -26,7 +25,7 @@ def process_input(app, input)
   when 3
     app.add_book
   when 4
-    app.add_label
+    puts 'Select option 4'
   when 5
     puts 'Select option 5'
   when 6
