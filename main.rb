@@ -1,9 +1,11 @@
+require_relative 'app'
+
 def show_menu
   puts 'Please choose an option by entering a number:'
   puts '1. List all books'
-  puts '2. List all music albums'
-  puts '3. List all movies'
-  puts '4. List of games'
+  puts '2. List all labels'
+  puts '3. Add a book'
+  puts '4. Add a label'
   puts '5. List all genres'
   puts '6. List all labels'
   puts '7. List all authors'
@@ -15,16 +17,16 @@ def show_menu
   print 'Your input: '
 end
 
-def process_input(input)
+def process_input(app, input)
   case input.to_i
   when 1
-    puts 'Select option 1'
+    app.list_all_book
   when 2
-    puts 'Select option 2'
+    app.list_all_labels
   when 3
-    puts 'Select option 3'
+    app.add_book
   when 4
-    puts 'Select option 4'
+    app.add_label
   when 5
     puts 'Select option 5'
   when 6
@@ -37,11 +39,12 @@ def invalid_option
 end
 
 def main
+  app = App.new
   loop do
     show_menu
     input = gets.chomp
-    process_input(input) if (1..6).to_a.include?(input.to_i)
-    invalid_option unless (1..6).to_a.include?(input.to_i)
+    process_input(app, input) if (1..6).to_a.include?(input.to_i)
+    invalid_option unless (0..10).to_a.include?(input.to_i)
     if input.to_i.zero?
       puts 'Goodbye see you soon!'
       break
