@@ -1,7 +1,5 @@
 require_relative 'app'
 
-
-
 def show_menu
   puts 'Please choose an option by entering a number:'
   puts '1. List all books'
