@@ -13,5 +13,8 @@ describe Game do
     it 'Should return correct last_played_at' do
       expect(Date.parse(game.last_played_at).year).to eq 2013
     end
+    it 'should return true if parent method returns true || if last_played_at is older than 2 years' do
+      expect(game.can_be_archived?).to eq true
+    end
   end
 end
