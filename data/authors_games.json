@@ -1,6 +1,6 @@
 [
   {
-    "author_id": 109,
+    "author_id": 685,
     "first_name": "Gone",
     "last_name": "Kilua",
     "Items": [
@@ -12,7 +12,7 @@
     ]
   },
   {
-    "author_id": 906,
+    "author_id": 223,
     "first_name": "Yacos",
     "last_name": "Seidou",
     "Items": [
@@ -20,6 +20,18 @@
         "published_date": "2012-05-05",
         "multiplayer": true,
         "last_played_at": "2021-06-05"
+      }
+    ]
+  },
+  {
+    "author_id": 163,
+    "first_name": "Eden",
+    "last_name": "Hazard",
+    "Items": [
+      {
+        "published_date": "2020-01-01",
+        "multiplayer": true,
+        "last_played_at": "2023-03-03"
       }
     ]
   }

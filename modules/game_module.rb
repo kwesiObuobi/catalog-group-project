@@ -61,8 +61,8 @@ module GameModule
 
   def list_games
     puts 'No games found' if @authors.empty?
-    @authors.each do |author|
-      author.items.each_with_index do |item, index|
+    @authors.each_with_index do |author, index|
+      author.items.each do |item|
         puts "#{index + 1})  Author: '#{author.first_name}', Published date: '#{item.published_date}',
         Multiplayer: #{item.multiplayer}, Last played at: '#{item.last_played_at}'"
       end
