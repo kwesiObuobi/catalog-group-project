@@ -1,8 +1,14 @@
 [
   {
-    "id": 265,
-    "published_date": "2023-12-13",
-    "publisher": "Spencer",
+    "id": 561,
+    "published_date": "2023-09-09",
+    "publisher": "spencer",
+    "cover_state": "good"
+  },
+  {
+    "id": 859,
+    "published_date": "2020-08-08",
+    "publisher": "spencer",
     "cover_state": "good"
   }
 ]
