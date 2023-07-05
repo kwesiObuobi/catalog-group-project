@@ -5,7 +5,7 @@ module AlbumModule
     print 'Enter album genre: '
     genre_input = gets.chomp
 
-    published_date = get_date
+    published_date = receive_date
 
     print 'Is it on spotify? [Y/N]: '
     spotify = gets.chomp.upcase == 'Y'
@@ -17,15 +17,15 @@ module AlbumModule
     @music_albums << album
   end
 
-  def get_date
+  def receive_date
     loop do
       print "Album's published date: (YYYY-MM-DD): "
       input = gets.chomp
-    
+
       begin
         return Date.parse(input)
       rescue ArgumentError
-        puts "Invalid date format. Please try again."
+        puts 'Invalid date format. Please try again.'
       end
     end
   end
