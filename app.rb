@@ -14,8 +14,8 @@ class App
   include AlbumModule
 
   def initialize
-    @books = []
-    @labels = []
+    @books = load_books_data
+    @labels = load_label_data
     @authors = []
     @games = []
     @music_albums = []

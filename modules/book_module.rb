@@ -1,3 +1,5 @@
+require_relative '../classes/book'
+
 module BookModule
   def add_book
     puts
@@ -32,14 +34,17 @@ module BookModule
     end
   end
 
-  def load_data
+  def load_books_data
     books = JSON.parse(fetch_data('books'))
-    labels = JSON.parse(fetch_data('label'))
-
+    @books = []
     books.each do |book|
       @books << Book.new(book['published_date'], book['publisher'], book['cover_state'])
     end
+  end
 
+  def load_label_data
+    labels = JSON.parse(fetch_data('label'))
+    @labels = []
     labels.each do |label|
       @labels << Label.new(label['title'], label['color'])
     end
@@ -48,8 +53,9 @@ module BookModule
   def save_book
     updated_books = []
     @books.each do |book|
-      updated_books << { 'id' => book.id, 'published_date' => book.published_date, 'publisher' => book.publisher,
-                         'cover_state' => book.cover_state }
+      updated_books << { 'id' => book['id'], 'published_date' => book['published_date'],
+                         'publisher' => book['publisher'],
+                         'cover_state' => book['cover_state'] }
     end
     File.write('data/books.json', JSON.pretty_generate(updated_books))
   end
@@ -57,7 +63,7 @@ module BookModule
   def save_label
     updated_labels = []
     @labels.each do |label|
-      updated_labels << { 'title' => label.title, 'color' => label.color }
+      updated_labels << { 'title' => label['title'], 'color' => label['color'] }
     end
     File.write('data/label.json', JSON.pretty_generate(updated_labels))
   end
@@ -70,15 +76,15 @@ module BookModule
   def list_all_book
     puts 'No books entered' if @books.empty?
     @books.each do |book|
-      puts "[id]: #{book.id}, [Published date]: #{book.published_date},
-       [Publisher] #{book.publisher}, [cover state]: #{book.cover_state}"
+      puts "[id]: #{book['id']}, [Published date]: #{book['published_date']},
+       [Publisher] #{book['publisher']}, [cover state]: #{book['cover_state']}"
     end
   end
 
   def list_all_labels
     puts 'No label added' if @labels.empty?
     @labels.each do |label|
-      puts "Title: #{label.title}, Color: #{label.color}"
+      puts "Title: #{label['title']}, Color: #{label['color']}"
     end
   end
 end
