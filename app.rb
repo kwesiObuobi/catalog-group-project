@@ -20,10 +20,12 @@ class App
     @games = []
     @music_albums = load_albums
     @genres = load_genres
+    load_authors_and_games
   end
 
   def persist_data
     save_books_and_labels
     save_genres_and_albums
+    save_games_and_authors
   end
 end

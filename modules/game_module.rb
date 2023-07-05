@@ -2,12 +2,12 @@ require_relative '../classes/author'
 
 module GameModule
   def create_game
-    publish_date = entering_date('Enter published date ')
+    published_date = entering_date('Enter published date ')
 
     multiplayer = multiplayer?('Multiplayer?')
     last_played_at = entering_date('Enter last played date ')
 
-    Game.new(publish_date, multiplayer, last_played_at)
+    Game.new(published_date, multiplayer, last_played_at)
   end
 
   def multiplayer?(prompt)
@@ -61,8 +61,8 @@ module GameModule
 
   def list_games
     puts 'No games found' if @authors.empty?
-    @authors.each do |author|
-      author.items.each_with_index do |item, index|
+    @authors.each_with_index do |author, index|
+      author.items.each do |item|
         puts "#{index + 1})  Author: '#{author.first_name}', Published date: '#{item.published_date}',
         Multiplayer: #{item.multiplayer}, Last played at: '#{item.last_played_at}'"
       end
@@ -75,5 +75,37 @@ module GameModule
       puts "#{index + 1}) Author ID: '#{author.id}', First name: '#{author.first_name}',
        Last name: '#{author.last_name}'"
     end
+  end
+
+  def load_authors_and_games
+    return [] unless File.exist?('data/authors_games.json')
+
+    loaded = JSON.parse(File.read('data/authors_games.json'))
+    loaded.each do |obj|
+      author = Author.new(obj['first_name'], obj['last_name'])
+      @authors << author
+      obj['Items'].each do |item|
+        author.add_items(Game.new(item['published_date'], item['multiplayer'], item['last_played_at']))
+      end
+    end
+  end
+
+  def save_games_and_authors
+    new_arr = []
+    @authors.each do |author|
+      new_arr << {
+        author_id: author.id,
+        first_name: author.first_name,
+        last_name: author.last_name,
+        Items: author.items.map do |item|
+                 {
+                   published_date: item.published_date,
+                   multiplayer: item.multiplayer,
+                   last_played_at: item.last_played_at
+                 }
+               end
+      }
+    end
+    File.write('data/authors_games.json', JSON.pretty_generate(new_arr)) if new_arr.length.positive?
   end
 end
