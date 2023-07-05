@@ -10,5 +10,11 @@
     "genre": "Reggae",
     "archived": false,
     "on_spotify": false
+  },
+  {
+    "published": "2009-09-09",
+    "genre": "Pop",
+    "archived": false,
+    "on_spotify": true
   }
 ]
