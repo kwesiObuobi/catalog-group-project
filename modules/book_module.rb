@@ -36,26 +36,27 @@ module BookModule
 
   def load_books_data
     books = JSON.parse(fetch_data('books'))
-    @books = []
+    new_books = []
     books.each do |book|
-      @books << Book.new(book['published_date'], book['publisher'], book['cover_state'])
+      new_books << Book.new(book['published_date'], book['publisher'], book['cover_state'])
     end
+    new_books
   end
 
   def load_label_data
     labels = JSON.parse(fetch_data('label'))
-    @labels = []
+    new_labels = []
     labels.each do |label|
-      @labels << Label.new(label['title'], label['color'])
+      new_labels << Label.new(label['title'], label['color'])
     end
+    new_labels
   end
 
   def save_book
     updated_books = []
     @books.each do |book|
-      updated_books << { 'id' => book['id'], 'published_date' => book['published_date'],
-                         'publisher' => book['publisher'],
-                         'cover_state' => book['cover_state'] }
+      updated_books << { id: book.id, published_date: book.published_date, publisher: book.publisher,
+                         cover_state: book.cover_state }
     end
     File.write('data/books.json', JSON.pretty_generate(updated_books))
   end
@@ -63,28 +64,28 @@ module BookModule
   def save_label
     updated_labels = []
     @labels.each do |label|
-      updated_labels << { 'title' => label['title'], 'color' => label['color'] }
+      updated_labels << { id: label.id, title: label.title, color: label.color }
     end
     File.write('data/label.json', JSON.pretty_generate(updated_labels))
   end
 
-  def save_on_exit
+  def save_books_and_labels
     save_book
     save_label
   end
 
   def list_all_book
     puts 'No books entered' if @books.empty?
-    @books.each do |book|
-      puts "[id]: #{book['id']}, [Published date]: #{book['published_date']},
-       [Publisher] #{book['publisher']}, [cover state]: #{book['cover_state']}"
+    @books.each_with_index do |book, index|
+      puts "#{index + 1}) id: #{book.id}, Published date: #{book.published_date},
+       Publisher #{book.publisher}, cover state: #{book.cover_state}"
     end
   end
 
   def list_all_labels
     puts 'No label added' if @labels.empty?
-    @labels.each do |label|
-      puts "Title: #{label['title']}, Color: #{label['color']}"
+    @labels.each_with_index do |label, index|
+      puts "#{index + 1}) Title: #{label.title}, Color: #{label.color}"
     end
   end
 end

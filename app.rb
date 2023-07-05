@@ -23,7 +23,7 @@ class App
   end
 
   def persist_data
-    save_on_exit
+    save_books_and_labels
     save_genres_and_albums
   end
 end
