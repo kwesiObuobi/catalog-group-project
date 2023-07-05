@@ -10,10 +10,16 @@ module AlbumModule
     print 'Is it on spotify? [Y/N]: '
     spotify = gets.chomp.upcase == 'Y'
 
-    genre = Genre.new(genre_input)
+    genre = nil
+    if @genres.nil? || @genres.empty? || !@genres.select { |item| item.name == genre_input }[0]
+      genre = Genre.new(genre_input)
+      @genres.push(genre)
+    else
+      genre = @genres.select { |item| item.name == genre_input }[0]
+    end
+
     album = MusicAlbum.new(published_date, spotify)
     album.add_genre(genre)
-    @genres << genre
     @music_albums << album
   end
 
