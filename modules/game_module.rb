@@ -2,11 +2,10 @@ require_relative '../classes/author'
 
 module GameModule
   def create_game
-    publish_date = entering_date
+    publish_date = entering_date('Enter published date ')
 
     multiplayer = multiplayer?('Multiplayer?')
-    puts 'Enter last played date (YYYY-MM-DD):'
-    last_played_at = entering_date
+    last_played_at = entering_date('Enter last played date ')
 
     Game.new(publish_date, multiplayer, last_played_at)
   end
@@ -27,9 +26,9 @@ module GameModule
     end
   end
 
-  def entering_date
+  def entering_date(prompt)
     loop do
-      puts 'Please enter a date (YYYY-MM-DD):'
+      puts "#{prompt}(YYYY-MM-DD):"
       date_input = gets.chomp
       if date_input.match(/^\d{4}-\d{2}-\d{2}$/)
         begin
@@ -73,7 +72,6 @@ module GameModule
   def list_authors
     puts 'No authors found' if @authors.empty?
     @authors.each_with_index do |author, index|
-      puts author
       puts "#{index + 1}) Author ID: '#{author.id}', First name: '#{author.first_name}',
        Last name: '#{author.last_name}'"
     end
