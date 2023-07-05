@@ -98,4 +98,9 @@ module AlbumModule
     end
     File.write('data/music_albums.json', JSON.pretty_generate(formatted_albums))
   end
+
+  def save_genres_and_albums
+    save_genres
+    save_music_albums
+  end
 end

@@ -1,0 +1,14 @@
+[
+  {
+    "published": "2001-01-01",
+    "genre": "Jazz",
+    "archived": false,
+    "on_spotify": true
+  },
+  {
+    "published": "2020-02-03",
+    "genre": "Reggae",
+    "archived": false,
+    "on_spotify": false
+  }
+]

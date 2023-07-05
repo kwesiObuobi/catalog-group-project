@@ -50,7 +50,7 @@ def main
     process_input(app, input) if (1..9).to_a.include?(input.to_i)
     invalid_option unless (0..9).to_a.include?(input.to_i)
     if input.to_i.zero?
-      app.save_on_exit
+      app.persist_data
       puts 'Goodbye see you soon!'
       break
     end

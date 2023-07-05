@@ -18,7 +18,12 @@ class App
     @labels = load_label_data
     @authors = []
     @games = []
-    @music_albums = []
-    @genres = []
+    @music_albums = load_albums
+    @genres = load_genres
+  end
+
+  def persist_data
+    save_on_exit
+    save_genres_and_albums
   end
 end
