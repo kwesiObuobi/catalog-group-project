@@ -1,6 +1,37 @@
 require 'date'
 
 module AlbumModule
+  def load_file_content(file)
+    filename = "data/#{file}.json"
+    return [] unless File.exist?(filename)
+
+    content = File.read(filename)
+    JSON.parse(content)
+  end
+
+  def load_genres
+    genres = load_file_content('genres')
+    return [] unless genres.length.positive?
+
+    retrieved_genres = []
+    genres.each { |genre| retrieved_genres << Genre.new(genre['name']) }
+    retrieved_genres
+  end
+
+  def load_albums
+    albums = load_file_content('music_albums')
+    return [] unless albums.length.positive?
+
+    retrieved_albums = []
+    albums.each do |album|
+      new_album = MusicAlbum.new(album['published'], album['on_spotify'])
+
+      new_album.genre = Genre.new(album['genre'])
+      retrieved_albums.push(new_album)
+    end
+    retrieved_albums
+  end
+
   def add_album
     print 'Enter album genre: '
     genre_input = gets.chomp
@@ -51,5 +82,20 @@ module AlbumModule
     return if @music_albums.empty?
 
     @genres.each_with_index { |genre, index| puts "#{index + 1}) ID: #{genre.id}, Name: #{genre.name}." }
+  end
+
+  def save_genres
+    formatted_genres = []
+    @genres.each { |genre| formatted_genres << { id: genre.id, name: genre.name } }
+    File.write('data/genres.json', JSON.pretty_generate(formatted_genres))
+  end
+
+  def save_music_albums
+    formatted_albums = []
+    @music_albums.each do |album|
+      formatted_albums << { published: album.published_date, genre: album.genre.name, archived: album.archived,
+                            on_spotify: album.on_spotify }
+    end
+    File.write('data/music_albums.json', JSON.pretty_generate(formatted_albums))
   end
 end
