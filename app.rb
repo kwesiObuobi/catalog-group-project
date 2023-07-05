@@ -6,6 +6,7 @@ require_relative 'classes/label'
 require_relative 'classes/game'
 require_relative 'classes/music_album'
 require_relative 'classes/genre'
+require 'json'
 
 class App
   include BookModule
@@ -13,8 +14,8 @@ class App
   include AlbumModule
 
   def initialize
-    @books = []
-    @labels = []
+    @books = load_books_data
+    @labels = load_label_data
     @authors = []
     @games = []
     @music_albums = []
