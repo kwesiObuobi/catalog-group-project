@@ -9,8 +9,8 @@ CREATE TABLE Game(
   multiplayer    VARCHAR(3)
   last_played_at DATE,
 
-  FOREIGN KEY (genre_id) REFERENCES Genre(id)
-  FOREIGN KEY (author_id) REFERENCES Author(id)
-  FOREIGN KEY (source_id) REFERENCES Source(id)
+  FOREIGN KEY (genre_id) REFERENCES Genre(id),
+  FOREIGN KEY (author_id) REFERENCES Author(id),
+  FOREIGN KEY (source_id) REFERENCES Source(id),
   FOREIGN KEY (label_id) REFERENCES Label(id)
 );
