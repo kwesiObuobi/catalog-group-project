@@ -3,4 +3,4 @@ CREATE TABLE Label(
   title VARCHAR(100),
   color VARCHAR(50),
   PRIMARY KEY(id)
-)
+);

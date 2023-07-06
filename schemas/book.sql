@@ -10,9 +10,8 @@ CREATE TABLE Book (
   archived BOOLEAN,
   publisher VARCHAR(50),
   cover_state VARCHAR(50),
-  PRIMARY KEY(id)
-  FOREIGN KEY (genre_id) REFERENCES genre(id)
-  FOREIGN KEY (author_id) REFERENCES author(id)
+  PRIMARY KEY(id),
+  FOREIGN KEY (genre_id) REFERENCES genre(id),
+  FOREIGN KEY (author_id) REFERENCES author(id),
   FOREIGN KEY (label_id) REFERENCES label(id)
-)
-
+);
