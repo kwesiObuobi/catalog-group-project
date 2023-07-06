@@ -16,6 +16,7 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Install](#install)
+  - [🎥 Video-Presentation](#video)
   - [👥 Author ](#-author-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -96,8 +97,15 @@ Run bundle install to install all dependencies
 Once you have the files on your machine, you can run the app by running the following command in your terminal: 
 
 ```
-ruby src/main.rb
+ruby main.rb
 ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+##  Video-Presentation <a id="video"></a>
+
+You can view a video presentation of this app [here](https://drive.google.com/file/d/1TnX1xhHe3vb_5ZZBCGA0BE0Y79OYR8VJ/view?usp=sharing)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

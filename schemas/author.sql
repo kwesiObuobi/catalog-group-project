@@ -1,0 +1,5 @@
+CREATE TABLE Author(
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100)
+);
