@@ -4,6 +4,7 @@ CREATE TABLE Book (
   id INT GENERATED ALWAYS AS IDENTITY,
   genre_id INT,
   author_id INT,
+  source_id INT,
   label_id INT,
   publish_date DATE,
   archived BOOLEAN,
